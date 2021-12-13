@@ -1,5 +1,6 @@
 var connection = require('./connection');
 
+//Customer Table Modal
 var Customer = connection.sequelize.define('Customer',{
     Id:{
         type:connection.Sequelize.INTEGER,
@@ -12,6 +13,7 @@ var Customer = connection.sequelize.define('Customer',{
         freezeTableName:true
     })
 
+//Products Table Modal
 var products = connection.sequelize.define('Product',{
     product_number:{
         primaryKey:true,
@@ -33,6 +35,7 @@ var products = connection.sequelize.define('Product',{
     
 )
 
+//Bulk Insert in cusomer table
 // Customer.bulkCreate([
 //     {Id:1,name:'Test1',location:'India'},
 //     {Id:2,name:'Test2',location:'India'},
@@ -40,6 +43,8 @@ var products = connection.sequelize.define('Product',{
 //     {Id:4,name:'Test4',location:'India'},
 
 // ])
+
+//Bulk Insert into Product table
 // products.bulkCreate([
 //     {product_number:1,description:"Test1",cose:212,id:3},
 //     {product_number:2,description:"Test2",cose:2253,id:2},
@@ -48,19 +53,25 @@ var products = connection.sequelize.define('Product',{
     
 // ])
 
+//Foreign Key Implements
 // Customer.belongsTo(products,{as:"Customer"});
+
+//Sync Customer
 // Customer.sync()
 // .then(()=>{console.log("Customer table created");})
 // .catch((err)=>{console.log(err);})
 
+//Product Sync
 // products.sync()
 // .then(()=>{console.log("Product table created");})
 // .catch((err)=>{console.log(err);})
 
+//Find All Products with customer
 // products.findAll({raw:true,include:['Customer']})
 // .then(data=>{console.log(data)})
 // .catch(err=>{console.log(err)})
 
+//Query
 connection.sequelize.query('select c.name,p.description from `Product` p inner join `Customer` c on p.id=c.Id;',{type:connection.Sequelize.QueryTypes.SELECT})
 .then((data)=>{console.log(data)})
 .catch(err=>{console.log(err)})

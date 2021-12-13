@@ -1,6 +1,7 @@
 var Sequelize = require('sequelize');
 var db = require('./db.config')
 
+//Connection Database Instance
 const sequelize = new Sequelize(db.DB,db.user,db.password,{
     host:db.HOST,
     dialect:db.dialect,
@@ -12,6 +13,7 @@ const sequelize = new Sequelize(db.DB,db.user,db.password,{
     }
 })
 
+//Employee Database Modal
 let employeesequelize = sequelize.define('EmployeeTable',{
     EmpId:{
         primaryKey:true,
@@ -24,8 +26,10 @@ let employeesequelize = sequelize.define('EmployeeTable',{
     freezeTableName:true,
 });
 
+//Exporting DB
 module.exports = {employeesequelize:employeesequelize,sequelize:sequelize}
 
+//Sync with table
 /*
 employeesequelize.sync()
 .then(data=>{
@@ -36,6 +40,7 @@ employeesequelize.sync()
 })
 */
 
+//Bulk Insert into db
 /*
 employeesequelize.bulkCreate([
     {EmpId:1,name:'Raja',dept:'FullStack',designation:'trainee'},
@@ -44,6 +49,7 @@ employeesequelize.bulkCreate([
 ])
 */
 
+//Get ALL form EMployee table
 // employeesequelize.findAll({raw:true})
 // .then(data=>{
 //     console.log(data)
@@ -52,6 +58,7 @@ employeesequelize.bulkCreate([
 //     console.log(err)
 // })
 
+//Get All with query
 sequelize.query('select * from `EmployeeTable`',{type:Sequelize.QueryTypes.SELECT})
 .then(data=>{
     console.log(data);

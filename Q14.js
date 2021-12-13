@@ -1,5 +1,8 @@
 var connection = require('./connection');
+//Sequelize Operation Instance
 op=connection.Sequelize.Op
+
+//Find All With Sequelize And Operation
 connection.usersequelize.findAll({where:{
     [op.and]:[{stream:'CSE'},{marks:{$eq:99}}]
 }})

@@ -1,5 +1,6 @@
 var connection = require('./connection');
 
+//Update in Enployee Table where name is Raja
 connection.employeesequelize.update({name:'RAJA KUMAR'},{
     where:{name:'Raja'}
 })

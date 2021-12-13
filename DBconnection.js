@@ -1,6 +1,7 @@
 var Sequelize = require('sequelize');
 var db = require('./db.config')
 
+//Creating connection instance
 const sequelize = new Sequelize(db.DB,db.user,db.password,{
     host:db.HOST,
     dialect:db.dialect,
@@ -12,6 +13,7 @@ const sequelize = new Sequelize(db.DB,db.user,db.password,{
     }
 })
 
+//Authincate Connection
 sequelize.authenticate()
 .then(data=>{
     console.log('Database connected');

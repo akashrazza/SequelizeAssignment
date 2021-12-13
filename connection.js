@@ -1,6 +1,7 @@
 var Sequelize = require('sequelize');
 var db = require('./db.config')
 
+//Connection Instance
 const sequelize = new Sequelize(db.DB,db.user,db.password,{
     host:db.HOST,
     dialect:db.dialect,
@@ -11,7 +12,7 @@ const sequelize = new Sequelize(db.DB,db.user,db.password,{
         idle:db.pool.idle
     }
 })
-
+//User Table 
 let usersequelize = sequelize.define('UserSequelize',{
     student_id:Sequelize.STRING, 
     name:Sequelize.STRING, 
@@ -21,6 +22,7 @@ let usersequelize = sequelize.define('UserSequelize',{
     freezeTableName:true,
 });
 
+//Employee table
 let employeesequelize = sequelize.define('EmployeeTable',{
     EmpId:{
         primaryKey:true,
@@ -33,6 +35,7 @@ let employeesequelize = sequelize.define('EmployeeTable',{
     freezeTableName:true,
 });
 
+//Movie Table
 let moviesequelize = sequelize.define('MovieSequelize',{
     MovieId:{
         primaryKey:true,
@@ -45,4 +48,5 @@ let moviesequelize = sequelize.define('MovieSequelize',{
         timestamps:false,
         freezeTableName:true
     });
+//Export All Modal and connection instance
 module.exports={sequelize:sequelize,usersequelize:usersequelize,Sequelize:Sequelize,employeesequelize:employeesequelize,moviesequelize:moviesequelize}

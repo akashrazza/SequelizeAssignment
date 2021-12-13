@@ -1,6 +1,7 @@
 var Sequelize = require('sequelize');
 var db = require('./db.config')
 
+//Connection Instance 
 const sequelize = new Sequelize(db.DB,db.user,db.password,{
     dialect:db.dialect,
     host:db.HOST,
@@ -12,6 +13,7 @@ const sequelize = new Sequelize(db.DB,db.user,db.password,{
     }
 })
 
+//Movie Database Modal
 let moviesequelize = sequelize.define('MovieSequelize',{
     MovieId:{
         primaryKey:true,
@@ -25,6 +27,7 @@ let moviesequelize = sequelize.define('MovieSequelize',{
         freezeTableName:true
     });
 
+//Sync with DB
 /*
 moviesequelize.sync({force:true})
 .then(data=>{
@@ -35,6 +38,8 @@ moviesequelize.sync({force:true})
 });
 */
 
+
+//Bulk Insert into Movie 
 /*
 moviesequelize.bulkCreate([
     {MovieId:1,MovieName:'Chak de India',Type_of_Movie:"Motivational"},
@@ -43,7 +48,7 @@ moviesequelize.bulkCreate([
 ]);
 */
 
-
+//Get all Moviea
 moviesequelize.findAll({raw:true})
 .then(data=>{
     console.log(data);
@@ -52,6 +57,7 @@ moviesequelize.findAll({raw:true})
     console.log(err);
 })
 
+//Get All with quert
 // sequelize.query('select * from `MovieSequelize`',{type:Sequelize.QueryTypes.SELECT})
 // .then(data=>{
 //     console.log(data);
